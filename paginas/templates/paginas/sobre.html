@@ -1,0 +1,14 @@
+{% extends "paginas/modelo.html" %}
+<!-- Carrega a biblioteca de funções (filtros, templatetags) -->
+{% load static %}
+
+
+{% block conteudo %}
+
+<h6>O aplicativo é um gerenciador de atividades de uma empresa de design gráfico. Ele permitirá que os gerentes e designers acompanhem o progresso de seus trabalhos e registre as atividades feitas no dia a dia. O aplicativo abrange as principais funcionalidades necessárias para a gestão de projetos, tarefas, clientes, feedbacks e faturamento, proporcionando uma visão clara e organizada das atividades da empresa.</h6>
+
+<!-- Adicionando a imagem -->
+<img src="{% static 'assets\img\diagrama_caso_de_uso.jpg' %}" alt="Diagrama de Caso de Uso" style="max-width: 100%; height: auto;">
+
+
+{% endblock %}

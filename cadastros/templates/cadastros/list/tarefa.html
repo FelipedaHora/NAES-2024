@@ -1,0 +1,67 @@
+{% extends "paginas/modelo.html" %}
+
+{% block conteudo %}
+<h3>
+    Lista de <b>Tarefas</b>
+</h3>
+
+<hr>
+
+<table class="table table-striped">
+    <thead>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Data de Criação</th>
+        <th>Data de Conclusão</th>
+        <th>Status</th>
+        <th>Projeto</th>
+        <th>Designers</th>
+        <th>Opções</th>
+    </thead>
+    <tbody>
+        {% for object in object_list %}
+            <tr>
+                <td>{{ object.id }}</td>
+                <td>{{ object.nome }}</td>
+                <td>{{ object.descricao }}</td>
+                <td>{{ object.dataCriacao }}</td>
+                <td>{{ object.dataConclusao }}</td>
+                <td>{{ object.status }}</td>
+                <td>{{ object.projeto.nome }}</td>
+                <td>
+                    {% for designer in object.designers.all %}
+                        {{ designer.nome }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        Nenhum designer atribuído
+                    {% endfor %}
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-gear"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item link-primary" href="{% url 'editar-tarefa' object.pk %}">
+                                    <i class="bi bi-pencil-square"></i> Editar
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item link-danger" href="{% url 'excluir-tarefa' object.pk %}">
+                                    <i class="bi bi-trash"></i> Excluir
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="9">Nenhum registro encontrado.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
