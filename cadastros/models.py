@@ -1,5 +1,11 @@
 from django.db import models
 
+STATUS_CHOICES = (
+    ('pendente', 'Pendente'),
+    ('andamento', 'Andamento'),
+    ('concluido', 'Concluido'),
+)
+
 class Cliente(models.Model):
     nome = models.CharField(max_length=150)
     email = models.EmailField(max_length=120, blank=True, null=True)
@@ -36,7 +42,7 @@ class Tarefa(models.Model):
     descricao = models.TextField(blank=True, null=True)
     data_criacao = models.DateField(auto_now_add=True)
     data_conclusao = models.DateField(blank=True, null=True)
-    status = models.CharField(max_length=20)
+    status = models.CharField(max_length=40, choices=STATUS_CHOICES)
     projeto = models.ForeignKey(Projeto, on_delete=models.CASCADE)
     designers = models.ManyToManyField(Designer)
 
