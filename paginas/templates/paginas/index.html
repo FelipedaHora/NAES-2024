@@ -3,8 +3,41 @@
 {% load static %}
 
 {% block conteudo %}
-<h3>Bem Vindo, Designer</h3>
 
-<h5>{{ titulo }}</h5>
+<h3>Bem Vindos ao sistema</h3>
+
+{% if not request.user.is_authenticated %}
+    <p>
+        Para acessar o sistema, faça o login.
+    </p>
+    <p>
+        <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+    </p>
+
+{% else %}
+
+    <p>
+        Olá, {{ request.user }}!
+    </p>
+
+    <h4>Minhas estatísticas</h4>
+    <ul>
+        <li>Total de projetos: {{ qtde_projetos }}</li>
+        <li>Minhas tarefas: {{ m_tarefas }}</li>
+    </ul>
+
+    <hr>
+
+    <ul>
+        {% for c in tarefas %}
+            <li>{{ c.nome }}/{{c.descricao }}</li>
+        {% empty %}
+            <li>Nenhum registro de tarefas</li>
+        {% endfor %}
+
+        {{ queryset }}
+    </ul>
+
+{% endif %}
 
 {% endblock %}

@@ -10,20 +10,16 @@
 <table class="table table-striped">
     <thead>
         <th>Nome</th>
-        <th>CPF</th>
         <th>Telefone</th>
         <th>Endereço</th>
-        <th>Data de Criação</th>
         <th>Opções</th>
     </thead>
     <tbody>
         {% for object in object_list %}
             <tr>
                 <td>{{ object.nome }}</td>
-                <td>{{ object.cpf }}</td>
                 <td>{{ object.telefone }}</td>
                 <td>{{ object.endereco }}</td>
-                <td>{{ object.data_criacao }}</td>
                 <td>
                     <div class="dropdown">
                         <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
